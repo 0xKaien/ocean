@@ -67,7 +67,7 @@ install_nodes() {
   validate_ip_or_fqdn "$P2P_ANNOUNCE_ADDRESS"
 
   # 通过安装批次自动调整 BASE_HTTP_PORT
-  BASE_HTTP_PORT=$((30000 + (START_INDEX - 1) * 6))
+  BASE_HTTP_PORT=$((22800 + (START_INDEX - 1) * 6))
   PORT_INCREMENT=6
 
   install_single_node() {
@@ -200,7 +200,7 @@ services:
             "chunkSize": 100
           }
         }
-      DB_URL: 'http://typesense-${i}:${TYPESENSE_PORT}/?apiKey=xyz'
+      DB_URL: 'http://typesense:${TYPESENSE_PORT}/?apiKey=xyz'
       IPFS_GATEWAY: 'https://ipfs.io/'
       ARWEAVE_GATEWAY: 'https://arweave.net/'
       INTERFACES: '["HTTP","P2P"]'
@@ -222,6 +222,7 @@ services:
       - ${NODE_DIR}:/app/data
     depends_on:
       - typesense
+      
   typesense:
     image: typesense/typesense:26.0
     container_name: typesense-${i}
