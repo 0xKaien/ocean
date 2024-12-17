@@ -222,7 +222,6 @@ services:
       - ${NODE_DIR}:/app/data
     depends_on:
       - typesense
-      
   typesense:
     image: typesense/typesense:26.0
     container_name: typesense-${i}
